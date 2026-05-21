@@ -3,6 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from groq import Groq
 import json
+import os
+
+GROQ_KEY = os.environ.get("GROQ_KEY")
+client = Groq(api_key=GROQ_KEY)
 
 app = FastAPI()
 
@@ -14,8 +18,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-GROQ_KEY = "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"
-client = Groq(api_key=GROQ_KEY)
+
+
 
 class ListingRequest(BaseModel):
     title: str
